@@ -285,12 +285,6 @@ sealed abstract class StreamingT[F[_], A] { lhs =>
    *
    * Use .toString(n) to see the first n elements of the stream.
    */
-  override def toString: String =
-    this match {
-      case This(a, _) => s"StreamingT($a, ...)"
-      case Next(_) => "StreamingT(...)"
-      case Empty() => "StreamingT()"
-    }
 }
 
 object StreamingT extends StreamingTInstances {
