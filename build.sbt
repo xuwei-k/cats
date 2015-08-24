@@ -183,8 +183,11 @@ lazy val tests = crossProject
   .settings(disciplineDependencies:_*)
   .settings(noPublishSettings:_*)
   .settings(libraryDependencies += "org.scalatest" %%% "scalatest" % "3.0.0-M7" % "test")
+  .settings(libraryDependencies += "com.chuusai" %% "shapeless" % "2.2.5" % "test")
   .jsSettings(commonJsSettings:_*)
   .jvmSettings(commonJvmSettings:_*)
+  .settings(scalapropsWithScalazlaws:_*)
+  .settings(scalapropsVersion := "0.1.13")
 
 lazy val testsJVM = tests.jvm
 lazy val testsJS = tests.js

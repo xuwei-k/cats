@@ -361,8 +361,6 @@ sealed abstract class StreamingT[F[_], A] { lhs =>
    *
    * Use .toString(n) to see the first n elements of the stream.
    */
-  override def toString: String =
-    "StreamingT(...)"
 }
 
 object StreamingT extends StreamingTInstances {
