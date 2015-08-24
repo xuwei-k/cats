@@ -5,6 +5,8 @@ import cats.data.StreamingT
 import scalaprops._
 import scalaz.std.list.listEqual
 import scalaz.std.anyVal._
+import scalaz.std.option._
+import scalaz.std.tuple._
 
 object StreamingTScalapropsTest extends Scalaprops {
 
@@ -16,12 +18,12 @@ object StreamingTScalapropsTest extends Scalaprops {
         fa flatMap f
     }
 
-  implicit def streamingTEqual[F[_], A](implicit ev: cats.Monad[F], eva: scalaz.Equal[A], evfb: scalaz.Equal[F[Boolean]]): scalaz.Equal[StreamingT[F, A]] =
-    scalaz.Equal.equal[StreamingT[F, A]]{ (xs, ys) =>
-      import scalaz.syntax.equal._
-      (xs izipMap ys)(_ === _, _ => false, _ => false)
-        .forall(_ == true) === ev.pure(true)
-    }
+  implicit def equal[F[_]: Monad, A](
+    implicit E: shapeless.Lazy[scalaz.Equal[F[Option[(A, F[StreamingT[F, A]])]]]]
+  ): scalaz.Equal[StreamingT[F, A]] = scalaz.Equal.equal{
+    (a, b) =>
+      E.value.equal(a.uncons, b.uncons)
+  }
 
   implicit def gen[F[_]: Applicative, A](implicit
     A: Gen[A], F: shapeless.Lazy[Gen[F[StreamingT[F, A]]]]
@@ -45,7 +47,7 @@ object StreamingTScalapropsTest extends Scalaprops {
         fa map f
     }
 
-  override def param = super.param.copy(maxSize = 2)
+  override def param = super.param.copy(maxSize = 2, rand = Rand.standard(1))
 
   val laws = scalazlaws.monad.all[StreamTList]
 }
