@@ -146,6 +146,9 @@ trait OptionTInstances extends OptionTInstances1 {
     new MonadCombine[OptionT[F, ?]] {
       def pure[A](a: A): OptionT[F, A] = OptionT.pure(a)
 
+      override def ap[A,B](fa: OptionT[F, A])(f: OptionT[F, A => B]): OptionT[F, B] =
+        fa.ap(f)
+
       def flatMap[A, B](fa: OptionT[F, A])(f: A => OptionT[F, B]): OptionT[F, B] =
         fa.flatMap(f)
 
