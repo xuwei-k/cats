@@ -13,7 +13,7 @@ cache:
     - $HOME/.sbt
 
 script:
-  - scripts/travis-publish.sh
+  - sbt "testsJVM/testOnly cats.tests.StreamingTScalapropsTests"
 
 notifications:
   webhooks:

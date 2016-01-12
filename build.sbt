@@ -159,7 +159,10 @@ lazy val tests = crossProject.crossType(CrossType.Pure)
   .settings(catsSettings:_*)
   .settings(disciplineDependencies:_*)
   .settings(noPublishSettings:_*)
-  .settings(libraryDependencies ++= Seq(
+  .settings(scalapropsSettings: _*)
+  .settings(
+    scalapropsVersion := "0.2.1",
+    libraryDependencies ++= Seq(
     "org.scalatest" %%% "scalatest" % "3.0.0-M7" % "test",
     "org.typelevel" %%% "catalysts-platform" % "0.0.2" % "test"))
   .jsSettings(commonJsSettings:_*)
