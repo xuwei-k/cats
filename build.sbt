@@ -46,6 +46,8 @@ lazy val tagName = Def.setting{
 }
 
 lazy val commonJsSettings = Seq(
+  jsEnv := NodeJSEnv().value,
+  scalaJSUseRhino in Global := false,
   scalacOptions += {
     val tagOrHash =
       if(isSnapshot.value) sys.process.Process("git rev-parse HEAD").lines_!.head
