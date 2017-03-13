@@ -16,7 +16,6 @@ jdk:
 matrix:
   include:
   - dist: trusty
-    group: edge
     sudo: required
     scala: 2.12.1
     jdk: oraclejdk9
