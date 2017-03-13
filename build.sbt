@@ -53,6 +53,16 @@ lazy val tagName = Def.setting{
 }
 
 lazy val commonJsSettings = Seq(
+  scalaJSOptimizerOptions ~= { options =>
+    // https://github.com/scala-js/scala-js/issues/2798
+    try {
+      scala.util.Properties.isJavaAtLeast("1.8")
+      options
+    } catch {
+      case _: NumberFormatException =>
+        options.withParallel(false)
+    }
+  },
   scalacOptions += {
     val tagOrHash =
       if (isSnapshot.value) sys.process.Process("git rev-parse HEAD").lines_!.head
