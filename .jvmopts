@@ -1,3 +1,4 @@
+-Dsbt.scala.version=2.10.7
 -Dfile.encoding=UTF8
 -Xms1G
 -Xmx6G
