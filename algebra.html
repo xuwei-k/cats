@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="generator" content="Typelevel Laika + Helium Theme" />
-  <title>Data Types</title>
+  <title>Algebra</title>
   
   <meta name="author" content="cats contributors"/>
   
@@ -135,8 +135,8 @@
   <ul class="nav-list">
     <li class="level1 nav-leaf"><a href="index.html">Cats</a></li>
     <li class="level1 nav-leaf"><a href="typeclasses.html">Type Classes</a></li>
-    <li class="level1 active nav-leaf"><a href="#">Data Types</a></li>
-    <li class="level1 nav-leaf"><a href="algebra.html">Algebra</a></li>
+    <li class="level1 nav-leaf"><a href="datatypes.html">Data Types</a></li>
+    <li class="level1 active nav-leaf"><a href="#">Algebra</a></li>
     <li class="level1 nav-leaf"><a href="alleycats.html">Alleycats</a></li>
     <li class="level1 nav-leaf"><a href="motivations.html">Motivations</a></li>
     <li class="level1 nav-leaf"><a href="resources_for_learners.html">Resources for Learners</a></li>
@@ -208,9 +208,14 @@
 
       
 <nav id="page-nav">
-  <p class="header"><a href="#">Data Types</a></p>
+  <p class="header"><a href="#">Algebra</a></p>
 
   <ul class="nav-list">
+    <li class="level1 nav-leaf"><a href="#algebraic-properties-and-terminology">algebraic properties and terminology</a></li>
+    <li class="level1 nav-leaf"><a href="#basic-algebraic-structures">basic algebraic structures</a></li>
+    <li class="level1 nav-leaf"><a href="#ring-like-structures">ring-like structures</a></li>
+    <li class="level1 nav-node"><a href="#lattice-like-structures">lattice-like structures</a></li>
+    <li class="level2 nav-leaf"><a href="#documentation-help">Documentation Help</a></li>
   </ul>
 
   <p class="footer"></p>
@@ -219,30 +224,372 @@
 
       <main class="content">
 
-        <ul class="nav-list">
-          <li class="level1 nav-header">Data Types</li>
-          <li class="level2 nav-leaf"><a href="datatypes/chain.html">Chain</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/const.html">Const</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/contt.html">ContT</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/eithert.html">EitherT</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/eval.html">Eval</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/freeapplicative.html">Free Applicative</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/freemonad.html">Free Monad</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/functionk.html">FunctionK</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/id.html">Id</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/ior.html">Ior</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/iort.html">IorT</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/kleisli.html">Kleisli</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/nel.html">NonEmptyList</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/nested.html">Nested</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/oneand.html">OneAnd</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/optiont.html">OptionT</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/state.html">State</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/statet.html">StateT</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/validated.html">Validated</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/writer.html">Writer</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/writert.html">WriterT</a></li>
+        <h1 id="algebra-overview" class="title">Algebra Overview</h1>
+        <p>Algebra uses type classes to represent algebraic structures. You can use these type classes to represent the abstract capabilities (and requirements) you want generic parameters to possess.</p>
+        <p>This section will explain the structures available.</p>
+        
+        <h2 id="algebraic-properties-and-terminology" class="section"><a class="anchor-link left" href="#algebraic-properties-and-terminology"><i class="icofont-laika link">&#xef71;</i></a>algebraic properties and terminology</h2>
+        <p>We will be talking about properties like <em>associativity</em> and <em>commutativity</em>. Here is a quick explanation of what those properties mean:</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Associative</td>
+              <td>If <code>⊕</code> is associative, then <code>a ⊕ (b ⊕ c)</code> = <code>(a ⊕ b) ⊕ c</code>.</td>
+            </tr>
+            <tr>
+              <td>Commutative</td>
+              <td>If <code>⊕</code> is commutative, then <code>a ⊕ b</code> = <code>b ⊕ a</code>.</td>
+            </tr>
+            <tr>
+              <td>Identity</td>
+              <td>If <code>id</code> is an identity for <code>⊕</code>, then <code>a ⊕ id</code> = <code>id ⊕ a</code> = <code>a</code>.</td>
+            </tr>
+            <tr>
+              <td>Inverse</td>
+              <td>If <code>¬</code> is an inverse for <code>⊕</code> and <code>id</code>, then <code>a ⊕ ¬a</code> = <code>¬a ⊕ a</code> = <code>id</code>.</td>
+            </tr>
+            <tr>
+              <td>Distributive</td>
+              <td>If <code>⊕</code> and <code>⊙</code> distribute, then <code>a ⊙ (b ⊕ c)</code> = <code>(a ⊙ b) ⊕ (a ⊙ c)</code> and <code>(a ⊕ b) ⊙ c</code> = <code>(a ⊙ c) ⊕ (b ⊙ c)</code>.</td>
+            </tr>
+            <tr>
+              <td>Idempotent</td>
+              <td>If <code>⊕</code> is idempotent, then <code>a ⊕ a</code> = <code>a</code>. If <code>f</code> is idempotent, then <code>f(f(a))</code> = <code>f(a)</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Though these properties are illustrated with symbolic operators, they work equally-well with functions. When you see <code>a ⊕ b</code> that is equivalent to <code>f(a, b)</code>: <code>⊕</code> is an infix representation of the binary function <code>f</code>, and <code>a</code> and <code>b</code> are values (of some type <code>A</code>).</p>
+        <p>Similarly, when you see <code>¬a</code> that is equivalent to <code>g(a)</code>: <code>¬</code> is a prefix representation of the unary function <code>g</code>, and <code>a</code> is a value (of some type <code>A</code>).</p>
+        
+        <h2 id="basic-algebraic-structures" class="section"><a class="anchor-link left" href="#basic-algebraic-structures"><i class="icofont-laika link">&#xef71;</i></a>basic algebraic structures</h2>
+        <p>The most basic structures can be found in the <code>algebra</code> package. They all implement a method called <code>combine</code>, which is associative. The identity element (if present) will be called <code>empty</code>, and the inverse method (if present) will be called <code>inverse</code>.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Associative?</th>
+              <th>Commutative?</th>
+              <th>Identity?</th>
+              <th>Inverse?</th>
+              <th>Idempotent?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Semigroup</td>
+              <td>✓</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>CommutativeSemigroup</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Monoid</td>
+              <td>✓</td>
+              <td></td>
+              <td>✓</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Band</td>
+              <td>✓</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td>Semilattice</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td></td>
+              <td></td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td>Group</td>
+              <td>✓</td>
+              <td></td>
+              <td>✓</td>
+              <td>✓</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>CommutativeMonoid</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>CommutativeGroup</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>BoundedSemilattice</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td></td>
+              <td>✓</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>(For a description of what each column means, see <a href="#algebraic-properties-and-terminology">§algebraic properties and terminology</a>.)</p>
+        
+        <h2 id="ring-like-structures" class="section"><a class="anchor-link left" href="#ring-like-structures"><i class="icofont-laika link">&#xef71;</i></a>ring-like structures</h2>
+        <p>The <code>algebra.ring</code> package contains more sophisticated structures which combine an <em>additive</em> operation (called <code>plus</code>) and a <em>multiplicative</em> operation (called <code>times</code>). Additive identity and inverses will be called <code>zero</code> and <code>negate</code> (respectively); multiplicative identity and inverses will be called <code>one</code> and <code>reciprocal</code> (respectively).</p>
+        <p>All ring-like structures are associative for both <code>+</code> and <code>*</code>, have commutative <code>+</code>, and have a <code>zero</code> element (an identity for <code>+</code>).</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Has <code>negate</code>?</th>
+              <th>Has <code>1</code>?</th>
+              <th>Has <code>reciprocal</code>?</th>
+              <th>Commutative <code>*</code>?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Semiring</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Rng</td>
+              <td>✓</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Rig</td>
+              <td></td>
+              <td>✓</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>CommutativeRig</td>
+              <td></td>
+              <td>✓</td>
+              <td></td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td>Ring</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>CommutativeRing</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td></td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td>Semifield</td>
+              <td></td>
+              <td>✓</td>
+              <td>✓</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>CommutativeSemifield</td>
+              <td></td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td>Field</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>(For a description of what the terminology in each column means, see <a href="#algebraic-properties-and-terminology">§algebraic properties and terminology</a>.)</p>
+        
+        <h2 id="lattice-like-structures" class="section"><a class="anchor-link left" href="#lattice-like-structures"><i class="icofont-laika link">&#xef71;</i></a>lattice-like structures</h2>
+        <p>The <code>algebra.lattice</code> package contains more structures that can be somewhat ring-like. Rather than <code>plus</code> and <code>times</code> we have <code>meet</code> and <code>join</code> both of which are always associative, commutative and idempotent, and as such each can be viewed as a semilattice. Meet can be thought of as the greatest lower bound of two items while join can be thought of as the least upper bound between two items.</p>
+        <p>When <code>zero</code> is present, <code>join(a, zero)</code> = <code>a</code>. When <code>one</code> is present <code>meet(a, one)</code> = <code>a</code>.</p>
+        <p>When <code>meet</code> and <code>join</code> are both present, they obey the absorption law:</p>
+        <ul>
+          <li><code>meet(a, join(a, b))</code> = <code>join(a, meet(a, b)) = a</code></li>
         </ul>
+        <p>Sometimes meet and join distribute, we say it is distributive in this case:</p>
+        <ul>
+          <li><code>meet(a, join(b, c))</code> = <code>join(meet(a, b), meet(a, c))</code></li>
+        </ul>
+        <ul>
+          <li><code>join(a, meet(b, c))</code> = <code>meet(join(a, b), join(a, c))</code></li>
+        </ul>
+        <p>Sometimes an additional binary operation <code>imp</code> (for impliciation, also written as →, meet written as ∧) is present. Implication obeys the following laws:</p>
+        <ul>
+          <li><code>a → a</code> = <code>1</code></li>
+        </ul>
+        <ul>
+          <li><code>a ∧ (a → b)</code> = <code>a ∧ b</code></li>
+        </ul>
+        <ul>
+          <li><code>b ∧ (a → b)</code> = <code>b</code></li>
+        </ul>
+        <ul>
+          <li><code>a → (b ∧ c)</code> = <code>(a → b) ∧ (a → c)</code></li>
+        </ul>
+        <p>The law of the excluded middle can be expressed as:</p>
+        <ul>
+          <li><code>(a ∨ (a → 0))</code> = <code>1</code></li>
+        </ul>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Has <code>join</code>?</th>
+              <th>Has <code>meet</code>?</th>
+              <th>Has <code>zero</code>?</th>
+              <th>Has <code>one</code>?</th>
+              <th>Distributive</th>
+              <th>Has <code>imp</code>?</th>
+              <th>Excludes middle?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>JoinSemilattice</td>
+              <td>✓</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>MeetSemilattice</td>
+              <td></td>
+              <td>✓</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>BoundedJoinSemilattice</td>
+              <td>✓</td>
+              <td></td>
+              <td>✓</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>BoundedMeetSemilattice</td>
+              <td></td>
+              <td>✓</td>
+              <td></td>
+              <td>✓</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Lattice</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>DistributiveLattice</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td></td>
+              <td></td>
+              <td>✓</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>BoundedLattice</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>BoundedDistributiveLattice</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Heyting</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Bool</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Note that a <code>BoundedDistributiveLattice</code> gives you a <code>CommutativeRig</code>, but not the other way around: rigs aren&#39;t distributive with <code>a + (b * c) = (a + b) * (a + c)</code>.</p>
+        <p>Also, a <code>Bool</code> gives rise to a <code>BoolRing</code>, since each element can be defined as its own negation. Note, Bool&#39;s <code>.asBoolRing</code> is not an extension of the <code>.asCommutativeRig</code> method as the <code>plus</code> operations are defined differently.</p>
+        
+        <h3 id="documentation-help" class="section"><a class="anchor-link left" href="#documentation-help"><i class="icofont-laika link">&#xef71;</i></a>Documentation Help</h3>
+        <p>We&#39;d love your help with this documentation! You can edit this page in your browser by clicking <a href="https://github.com/typelevel/cats/edit/main/docs/algebra.md">this link</a>.</p>
 
         
 <hr class="footer-rule"/>

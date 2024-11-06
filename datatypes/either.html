@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="generator" content="Typelevel Laika + Helium Theme" />
-  <title>Data Types</title>
+  <title>Either</title>
   
   <meta name="author" content="cats contributors"/>
   
@@ -58,9 +58,9 @@
   
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:500">
   
-  <link rel="stylesheet" type="text/css" href="helium/site/icofont.min.css" />
-    <link rel="stylesheet" type="text/css" href="helium/site/laika-helium.css" />
-  <script src="helium/site/laika-helium.js"></script>
+  <link rel="stylesheet" type="text/css" href="../helium/site/icofont.min.css" />
+    <link rel="stylesheet" type="text/css" href="../helium/site/laika-helium.css" />
+  <script src="../helium/site/laika-helium.js"></script>
   
   
   <script> /* for avoiding page load transitions */ </script>
@@ -133,73 +133,73 @@
   </div>
 
   <ul class="nav-list">
-    <li class="level1 nav-leaf"><a href="index.html">Cats</a></li>
-    <li class="level1 nav-leaf"><a href="typeclasses.html">Type Classes</a></li>
-    <li class="level1 active nav-leaf"><a href="#">Data Types</a></li>
-    <li class="level1 nav-leaf"><a href="algebra.html">Algebra</a></li>
-    <li class="level1 nav-leaf"><a href="alleycats.html">Alleycats</a></li>
-    <li class="level1 nav-leaf"><a href="motivations.html">Motivations</a></li>
-    <li class="level1 nav-leaf"><a href="resources_for_learners.html">Resources for Learners</a></li>
-    <li class="level1 nav-leaf"><a href="jump_start_guide.html">Jump Start Guide</a></li>
-    <li class="level1 nav-leaf"><a href="imports.html">Imports</a></li>
-    <li class="level1 nav-leaf"><a href="faq.html">FAQ</a></li>
-    <li class="level1 nav-leaf"><a href="CONTRIBUTING.html">Contributor guide</a></li>
-    <li class="level1 nav-leaf"><a href="ADOPTERS.html">Adopters</a></li>
-    <li class="level1 nav-leaf"><a href="colophon.html">Colophon</a></li>
-    <li class="level1 nav-leaf"><a href="nomenclature.html">Glossary</a></li>
-    <li class="level1 nav-leaf"><a href="guidelines.html">Guidelines</a></li>
-    <li class="level1 nav-leaf"><a href="typelevelEcosystem.html">Typelevel Ecosystem</a></li>
+    <li class="level1 nav-leaf"><a href="../">Cats</a></li>
+    <li class="level1 nav-leaf"><a href="../typeclasses.html">Type Classes</a></li>
+    <li class="level1 nav-leaf"><a href="../datatypes.html">Data Types</a></li>
+    <li class="level1 nav-leaf"><a href="../algebra.html">Algebra</a></li>
+    <li class="level1 nav-leaf"><a href="../alleycats.html">Alleycats</a></li>
+    <li class="level1 nav-leaf"><a href="../motivations.html">Motivations</a></li>
+    <li class="level1 nav-leaf"><a href="../resources_for_learners.html">Resources for Learners</a></li>
+    <li class="level1 nav-leaf"><a href="../jump_start_guide.html">Jump Start Guide</a></li>
+    <li class="level1 nav-leaf"><a href="../imports.html">Imports</a></li>
+    <li class="level1 nav-leaf"><a href="../faq.html">FAQ</a></li>
+    <li class="level1 nav-leaf"><a href="../CONTRIBUTING.html">Contributor guide</a></li>
+    <li class="level1 nav-leaf"><a href="../ADOPTERS.html">Adopters</a></li>
+    <li class="level1 nav-leaf"><a href="../colophon.html">Colophon</a></li>
+    <li class="level1 nav-leaf"><a href="../nomenclature.html">Glossary</a></li>
+    <li class="level1 nav-leaf"><a href="../guidelines.html">Guidelines</a></li>
+    <li class="level1 nav-leaf"><a href="../typelevelEcosystem.html">Typelevel Ecosystem</a></li>
     <li class="level1 nav-header">Type Classes</li>
-    <li class="level2 nav-leaf"><a href="typeclasses/alternative.html">Alternative</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/applicative.html">Applicative</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/applicativemonaderror.html">ApplicativeError and MonadError</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/applicativetraverse.html">Applicative and Traversable Functors</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/arrow.html">Arrow</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/arrowchoice.html">Arrow Choice</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/bifoldable.html">Bifoldable</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/bifunctor.html">Bifunctor</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/bimonad.html">Bimonad</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/comonad.html">Comonad</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/contravariant.html">Contravariant</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/contravariantmonoidal.html">Contravariant Monoidal</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/eq.html">Eq</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/foldable.html">Foldable</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/functor.html">Functor</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/invariant.html">Invariant</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/invariantmonoidal.html">Invariant Monoidal</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/lawtesting.html">Law testing</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/monad.html">Monad</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/monoid.html">Monoid</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/monoidk.html">MonoidK</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/nonemptytraverse.html">NonEmptyTraverse</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/parallel.html">Parallel</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/reducible.html">Reducible</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/semigroup.html">Semigroup</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/semigroupk.html">SemigroupK</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/show.html">Show</a></li>
-    <li class="level2 nav-leaf"><a href="typeclasses/traverse.html">Traverse</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/alternative.html">Alternative</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/applicative.html">Applicative</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/applicativemonaderror.html">ApplicativeError and MonadError</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/applicativetraverse.html">Applicative and Traversable Functors</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/arrow.html">Arrow</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/arrowchoice.html">Arrow Choice</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/bifoldable.html">Bifoldable</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/bifunctor.html">Bifunctor</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/bimonad.html">Bimonad</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/comonad.html">Comonad</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/contravariant.html">Contravariant</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/contravariantmonoidal.html">Contravariant Monoidal</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/eq.html">Eq</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/foldable.html">Foldable</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/functor.html">Functor</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/invariant.html">Invariant</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/invariantmonoidal.html">Invariant Monoidal</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/lawtesting.html">Law testing</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/monad.html">Monad</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/monoid.html">Monoid</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/monoidk.html">MonoidK</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/nonemptytraverse.html">NonEmptyTraverse</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/parallel.html">Parallel</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/reducible.html">Reducible</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/semigroup.html">Semigroup</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/semigroupk.html">SemigroupK</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/show.html">Show</a></li>
+    <li class="level2 nav-leaf"><a href="../typeclasses/traverse.html">Traverse</a></li>
     <li class="level1 nav-header">Data Types</li>
-    <li class="level2 nav-leaf"><a href="datatypes/chain.html">Chain</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/const.html">Const</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/contt.html">ContT</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/eithert.html">EitherT</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/eval.html">Eval</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/freeapplicative.html">Free Applicative</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/freemonad.html">Free Monad</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/functionk.html">FunctionK</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/id.html">Id</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/ior.html">Ior</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/iort.html">IorT</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/kleisli.html">Kleisli</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/nel.html">NonEmptyList</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/nested.html">Nested</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/oneand.html">OneAnd</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/optiont.html">OptionT</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/state.html">State</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/statet.html">StateT</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/validated.html">Validated</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/writer.html">Writer</a></li>
-    <li class="level2 nav-leaf"><a href="datatypes/writert.html">WriterT</a></li>
+    <li class="level2 nav-leaf"><a href="chain.html">Chain</a></li>
+    <li class="level2 nav-leaf"><a href="const.html">Const</a></li>
+    <li class="level2 nav-leaf"><a href="contt.html">ContT</a></li>
+    <li class="level2 nav-leaf"><a href="eithert.html">EitherT</a></li>
+    <li class="level2 nav-leaf"><a href="eval.html">Eval</a></li>
+    <li class="level2 nav-leaf"><a href="freeapplicative.html">Free Applicative</a></li>
+    <li class="level2 nav-leaf"><a href="freemonad.html">Free Monad</a></li>
+    <li class="level2 nav-leaf"><a href="functionk.html">FunctionK</a></li>
+    <li class="level2 nav-leaf"><a href="id.html">Id</a></li>
+    <li class="level2 nav-leaf"><a href="ior.html">Ior</a></li>
+    <li class="level2 nav-leaf"><a href="iort.html">IorT</a></li>
+    <li class="level2 nav-leaf"><a href="kleisli.html">Kleisli</a></li>
+    <li class="level2 nav-leaf"><a href="nel.html">NonEmptyList</a></li>
+    <li class="level2 nav-leaf"><a href="nested.html">Nested</a></li>
+    <li class="level2 nav-leaf"><a href="oneand.html">OneAnd</a></li>
+    <li class="level2 nav-leaf"><a href="optiont.html">OptionT</a></li>
+    <li class="level2 nav-leaf"><a href="state.html">State</a></li>
+    <li class="level2 nav-leaf"><a href="statet.html">StateT</a></li>
+    <li class="level2 nav-leaf"><a href="validated.html">Validated</a></li>
+    <li class="level2 nav-leaf"><a href="writer.html">Writer</a></li>
+    <li class="level2 nav-leaf"><a href="writert.html">WriterT</a></li>
   </ul>
 
 </nav>
@@ -208,7 +208,7 @@
 
       
 <nav id="page-nav">
-  <p class="header"><a href="#">Data Types</a></p>
+  <p class="header"><a href="#">Either</a></p>
 
   <ul class="nav-list">
   </ul>
@@ -219,30 +219,12 @@
 
       <main class="content">
 
-        <ul class="nav-list">
-          <li class="level1 nav-header">Data Types</li>
-          <li class="level2 nav-leaf"><a href="datatypes/chain.html">Chain</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/const.html">Const</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/contt.html">ContT</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/eithert.html">EitherT</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/eval.html">Eval</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/freeapplicative.html">Free Applicative</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/freemonad.html">Free Monad</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/functionk.html">FunctionK</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/id.html">Id</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/ior.html">Ior</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/iort.html">IorT</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/kleisli.html">Kleisli</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/nel.html">NonEmptyList</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/nested.html">Nested</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/oneand.html">OneAnd</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/optiont.html">OptionT</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/state.html">State</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/statet.html">StateT</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/validated.html">Validated</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/writer.html">Writer</a></li>
-          <li class="level2 nav-leaf"><a href="datatypes/writert.html">WriterT</a></li>
-        </ul>
+        <h1 id="either" class="title">Either</h1>
+        <p>The <code>Either</code> type is provided by the Scala standard library, but Cats provides <a href="../jump_start_guide.html#either-helpers">syntax enrichment</a> and typeclass instances
+        to extend its functionality, including <a href="../typeclasses/functor.html#functor">Functor</a>, <a href="../typeclasses/applicative.html#applicative">Applicative</a>, <a href="../typeclasses/monad.html#monad">Monad</a> and 
+        <a href="../typeclasses/applicativemonaderror.html">MonadError</a>.</p>
+        <p>If you would like to accumulate errors instead of the short-circuiting behavior of <code>Either</code>, see the 
+        <a href="../typeclasses/parallel.html#parallel">Parallel</a> typeclass, or the <a href="validated.html#validated">Validated</a> data type.</p>
 
         
 <hr class="footer-rule"/>
