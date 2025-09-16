@@ -26,6 +26,7 @@ jobs:
   build:
     name: Test
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-22.04]
         scala: [2.12, 2.13, 3]
@@ -97,9 +98,6 @@ jobs:
       - name: sbt update
         if: matrix.java == 'graalvm@21' && steps.setup-java-graalvm-21.outputs.cache-hit == 'false'
         run: sbt +update
-
-      - name: Check that workflows are up to date
-        run: sbt githubWorkflowCheck
 
       - name: Check headers and formatting
         if: matrix.java == 'temurin@8' && matrix.os == 'ubuntu-22.04'

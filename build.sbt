@@ -60,7 +60,7 @@ lazy val commonJvmSettings = Seq(
 )
 
 lazy val commonJsSettings = Seq(
-  doctestGenTests := Seq.empty,
+  doctestGenTests := { if (tlIsScala3.value) Nil else doctestGenTests.value },
   tlVersionIntroduced ++= List("2.12", "2.13").map(_ -> "2.1.0").toMap
 )
 
@@ -71,7 +71,7 @@ Global / concurrentRestrictions += Tags.limit(NativeTags.Link, 1)
 val commonNativeTlVersionIntroduced = List("2.12", "2.13", "3").map(_ -> "2.12.0").toMap
 
 lazy val commonNativeSettings = Seq[Setting[?]](
-  doctestGenTests := Seq.empty,
+  doctestGenTests := { if (tlIsScala3.value) Nil else doctestGenTests.value },
   tlVersionIntroduced := commonNativeTlVersionIntroduced
 )
 
