@@ -1,5 +1,7 @@
 ThisBuild / tlBaseVersion := "2.13"
 
+ThisBuild / tlJdkRelease := Some(17)
+
 val scalaCheckVersion = "1.19.0"
 
 val disciplineVersion = "1.7.0"
@@ -54,6 +56,7 @@ lazy val cats1BincompatSettings = Seq(
 ThisBuild / tlVersionIntroduced := Map("3" -> "2.6.1")
 
 lazy val commonJvmSettings = Seq(
+  scalaVersion := "3.8.0-RC5",
   Test / fork := true,
   Test / javaOptions := Seq("-Xmx3G"),
   doctestGenTests := { if (tlIsScala3.value) Nil else doctestGenTests.value }
@@ -178,6 +181,10 @@ lazy val core = crossProject(JSPlatform, JVMPlatform, NativePlatform)
   .settings(testingDependencies)
   .jsSettings(commonJsSettings)
   .jvmSettings(commonJvmSettings, cats1BincompatSettings)
+  .jvmSettings(
+    coverageEnabled := true,
+    Compile / compile / scalacOptions ++= Seq("-Yprofile-enabled", "-Yprofile-trace", "cats-core-main.json")
+  )
   .nativeSettings(commonNativeSettings)
 
 lazy val laws = crossProject(JSPlatform, JVMPlatform, NativePlatform)
